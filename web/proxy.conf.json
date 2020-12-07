@@ -1,0 +1,6 @@
+{
+    "/BookStore": {
+      "target": "http://localhost:8080/BookStore",
+      "secure": false
+    }
+  }

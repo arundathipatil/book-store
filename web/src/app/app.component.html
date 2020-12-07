@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+    e-Book Store
+    <span style="padding-left: 33em;" *ngIf="loggedIn">
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="updateUserDeatils()">Edit Profile</button>
+            <button mat-menu-item (click)="changePassword()">Change Password</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+        <!-- <button (click)="logout()">Logout</button>
+        <button (click)="logout()">Change Password</button> -->
+    </span>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
