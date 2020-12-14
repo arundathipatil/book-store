@@ -38,6 +38,7 @@ export class AuthenticationService {
     logout(email) {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('authToken');
         this.logoutBackendSession(email).subscribe(data=>{
           console.log("loggedout");
         }, err=>{

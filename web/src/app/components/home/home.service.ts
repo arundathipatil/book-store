@@ -22,19 +22,20 @@ export class HomeService {
   }
 
   addBook(book: Book) {
-    return this.apiService.post(constant.urls.addBook, book);
+    return this.apiService.post(constant.baseUrl+constant.urls.addBook, book);
   }
 
   getAllBooksByemail(email: string) {
-    return this.apiService.get(constant.urls.getAllBooksByemail+ "?email="+email)
+    return this.apiService.get(constant.baseUrl+constant.urls.getAllBooksByemail+ "?email="+email)
   }
 
   updateBookDetails(book: Book) {
-    return this.apiService.post(constant.urls.updateBookDetails, book);
+    return this.apiService.put(constant.baseUrl+constant.urls.updateBookDetails, book);
   }
 
   deleteBook(id: number) {
-    return this.apiService.delete(constant.urls.deleteBook + "?id="+id);
+    return this.apiService.delete(constant.baseUrl+constant.urls.deleteBook + "?id="+id);
+    // return this.apiService.delete(constant.urls.deleteBook + );
   }
 
   getAllBooksToBuy(email: string) {

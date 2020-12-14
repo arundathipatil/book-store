@@ -31,6 +31,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUser(String username) {
+
+        sessionFactory.getCurrentSession().get(User.class, username);
         return null;
     }
 

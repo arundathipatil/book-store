@@ -15,4 +15,11 @@
 	<!-- for the stereotype annotation to work -->
 	<context:component-scan
 		base-package="edu.neu" />
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*"/>
+			<bean class="edu.neu.interceptor.ShoppingInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
