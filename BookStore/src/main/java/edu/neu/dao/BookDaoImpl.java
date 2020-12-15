@@ -27,9 +27,11 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> listBook() {
+    public List<Book> listBooks() {
+//        Query q =sessionFactory.getCurrentSession().createQuery("Delete FROM Book WHERE id = :id");
         return null;
     }
+
 
     @Override
     public Book getBook(int id) {
@@ -46,7 +48,11 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book findById(int id) {
-        return null;
+        Query q =sessionFactory.getCurrentSession().createQuery("FROM Book WHERE id =: id");
+//        Query q =sessionFactory.getCurrentSession().createQuery("FROM Book WHERE isbn =:isbn");
+        q.setParameter("id", id);;
+        Book book=(Book) q.uniqueResult();
+        return book;
     }
 
     @Override
@@ -65,5 +71,13 @@ public class BookDaoImpl implements BookDao {
         q.setParameter("isbn", isbn);
         Book book=(Book) q.uniqueResult();
         return book;
+    }
+
+    @Override
+    public List<Book> findBooksToBuy(User user) {
+        Query q =sessionFactory.getCurrentSession().createQuery("FROM Book WHERE user != :user");
+        q.setParameter("user", user);
+        List<Book> books = q.list();
+        return  books;
     }
 }

@@ -1,4 +1,5 @@
 import { Component , OnInit, ViewChild, Inject} from '@angular/core';
+import { Router } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -7,6 +8,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, EmailValidator } from 
 import { HomeService } from '../home.service';
 
 import { User } from '../../../models/User';
+import { Order } from 'src/app/models/order';
 
 
 export interface Cart {
@@ -35,7 +37,7 @@ export class CartComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private homeService: HomeService, public dialog: MatDialog) {
+  constructor(private homeService: HomeService, public dialog: MatDialog, private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.homeService.getAllCartItems(this.currentUser.email)
     .subscribe((data)=>{
@@ -65,5 +67,9 @@ export class CartComponent implements OnInit {
     }, error=>{
       alert("Item could not be removed from cart");
     })
+  }
+
+  ConfirmOrder() {
+    this.router.navigate(['home/confirmOrder']);
   }
 }

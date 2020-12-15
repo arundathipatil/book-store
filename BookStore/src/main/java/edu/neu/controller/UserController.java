@@ -1,7 +1,9 @@
 package edu.neu.controller;
 
+import edu.neu.model.Cart;
 import edu.neu.model.Changepwd;
 import edu.neu.model.User;
+import edu.neu.service.CartService;
 import edu.neu.service.UserExtracter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,9 @@ public class UserController {
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
+    @Autowired
+    CartService cartService;
+
     @RequestMapping(value= "/user", method= RequestMethod.GET)
     public ResponseEntity<?> get(@RequestHeader(value="Authorization",required = true) String requestTokenHeader) {
         User user = new User();
@@ -46,6 +51,10 @@ public class UserController {
        } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage() , HttpStatus.BAD_REQUEST);
        }
+        if(user.getRole().equals("SB")) {
+            createCart(user);
+        }
+
        return ResponseEntity.ok(u);
     }
 
@@ -83,6 +92,12 @@ public class UserController {
             return new ResponseEntity<String>(ex.getMessage() , HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(user);
+    }
+
+    private void createCart(User user) {
+        Cart cart = new Cart();
+        cart.setUser(user);
+        cartService.createCart(cart);
     }
 
 }

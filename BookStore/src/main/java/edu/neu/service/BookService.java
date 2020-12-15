@@ -13,4 +13,5 @@ public interface BookService {
     public void deleteBook(int id);
     public void UpdateBook(Book book);
     public Book findBookByEmailAndISBN(User user, String isbn);
+    public List<Book> findBooksToBuy(User user);
 }

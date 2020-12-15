@@ -19,6 +19,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BuyBooksComponent } from './buy-books/buy-books.component';
 import { CartComponent } from './cart/cart.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 
@@ -33,7 +35,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     UpdateBookDialogComponent, 
     BuyBooksComponent, 
     CartComponent, 
-    BookDetailsComponent],
+    BookDetailsComponent, ConfirmOrderComponent, MyOrdersComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

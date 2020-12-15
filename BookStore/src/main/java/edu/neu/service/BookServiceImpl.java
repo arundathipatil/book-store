@@ -51,4 +51,9 @@ public class BookServiceImpl implements BookService {
     public Book findBookByEmailAndISBN(User user, String isbn) {
         return bookdao.findBookByEmailAndISBN(user, isbn);
     }
+
+    @Override
+    public List<Book> findBooksToBuy(User user) {
+        return bookdao.findBooksToBuy(user);
+    }
 }

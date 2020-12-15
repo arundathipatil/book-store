@@ -4,6 +4,7 @@ import { constant } from '../../constant/const';
 import { User } from '../../models/User';
 import { Book } from '../../models/book';
 import { Cart } from '../../models/cart';
+import { CartItem } from '../../models/cartItem';
 
 
 @Injectable({
@@ -39,19 +40,19 @@ export class HomeService {
   }
 
   getAllBooksToBuy(email: string) {
-    return this.apiService.get(constant.urls.getAllBooksToBuy + "?email=" +email);
+    return this.apiService.get(constant.baseUrl+constant.urls.getAllBooksToBuy + "?email=" +email);
   }
 
-  addItemToCart(cart: Cart) {
-    return this.apiService.post(constant.urls.addItemToCart, cart);
+  addItemToCart(cart: CartItem) {
+    return this.apiService.post(constant.baseUrl+constant.urls.addItemToCart, cart);
   }
 
   deleteItemFromCart(id: number) {
-    return this.apiService.delete(constant.urls.deleteItemFromCart +"?id="+id);
+    return this.apiService.delete(constant.baseUrl+constant.urls.deleteItemFromCart +"?id="+id);
   }
 
   getAllCartItems(email: string) {
-    return this.apiService.get(constant.urls.getCartItems +"?email="+email);
+    return this.apiService.get(constant.baseUrl+constant.urls.getCartItems +"?email="+email);
   }
 
   changePassword(data: any) {
@@ -68,5 +69,13 @@ export class HomeService {
 
   deleteImage(id: number) {
     return this.apiService.delete(constant.urls.deleteImage+"?id="+id);
+  }
+
+  getConfirmOrderDetails() {
+      return this.apiService.get(constant.baseUrl+constant.urls.getConfirmOrderDetails);
+  }
+
+  placeOrder() {
+    return this.apiService.post(constant.baseUrl+constant.urls.placeOrder, null);
   }
 }

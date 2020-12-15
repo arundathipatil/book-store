@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, Validators, FormControl, EmailValidator } from 
 import { HomeService } from '../home.service';
 import { User } from '../../../models/User';
 import { Cart } from '../../../models/cart';
+import { CartItem } from 'src/app/models/cartItem';
+// import { Book } from 'src/app/models/book';
 
 export interface Book{
   isbn: string;
@@ -74,7 +76,14 @@ export class BuyBooksComponent implements OnInit {
     cart.title = row.title;
     cart.price = row.price;
 
-    this.homeService.addItemToCart(cart)
+    let cartItem: CartItem = new CartItem();
+    cartItem.book = row;
+    cartItem.quantity =parseInt(row.selectedQuanity);
+    // cartItem.book.id = row.id;
+    // cartItem.book.userEmail = row.userEmail;
+    // cartItem.b
+
+    this.homeService.addItemToCart(cartItem)
     .subscribe(data=>{
       alert("Item added to cart");
     }, error=>{
