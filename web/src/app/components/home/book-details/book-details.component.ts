@@ -31,8 +31,8 @@ export class BookDetailsComponent implements OnInit {
     private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.book = JSON.parse(localStorage.getItem('bookDetails'));
-    this.navigatedFrom = parseInt(localStorage.getItem('navigatedFrom'))
+    this.book = JSON.parse(sessionStorage.getItem('bookDetails'));
+    this.navigatedFrom = parseInt(sessionStorage.getItem('navigatedFrom'))
     if(this.navigatedFrom == 1) {
       this.uploadForm = this.fb.group({
         document: [null, null]

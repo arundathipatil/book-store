@@ -27,7 +27,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.user = JSON.parse(sessionStorage.getItem('currentUser'));
     this.homeService.getUserDetails(this.user.email)
      .subscribe(data=>{
       let user = new User();

@@ -38,7 +38,7 @@ export class CartComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private homeService: HomeService, public dialog: MatDialog, private router: Router) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.homeService.getAllCartItems(this.currentUser.email)
     .subscribe((data)=>{
       this.cartList = data;

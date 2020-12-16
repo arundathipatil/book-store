@@ -26,7 +26,7 @@ export class ConfirmOrderComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private homeService: HomeService, private router: Router) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.homeService.getConfirmOrderDetails()
     .subscribe((data)=>{
       this.order = data;

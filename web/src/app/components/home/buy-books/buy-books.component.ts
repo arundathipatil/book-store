@@ -45,7 +45,7 @@ export class BuyBooksComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private homeService: HomeService, public dialog: MatDialog, private router: Router) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.homeService.getAllBooksToBuy(this.currentUser.email)
     .subscribe((data)=>{
       this.bookList = data;
@@ -92,8 +92,8 @@ export class BuyBooksComponent implements OnInit {
   }
 
   navigateToBookDetails(book) {
-    localStorage.setItem("bookDetails", JSON.stringify(book));
-    localStorage.setItem("navigatedFrom", "2");
+    sessionStorage.setItem("bookDetails", JSON.stringify(book));
+    sessionStorage.setItem("navigatedFrom", "2");
     this.router.navigate(['home/bookDetails']);
   }
 

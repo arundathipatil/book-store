@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 
           let user = new User();
-          user = JSON.parse(localStorage.getItem('currentUser'));
+          user = JSON.parse(sessionStorage.getItem('currentUser'));
           let navigationExtras: NavigationExtras = {
             queryParams: {
                 "email": user["email"],
@@ -67,9 +67,10 @@ export class LoginComponent implements OnInit {
               this.authenticationService.login(user, token);
               let navigationExtras: NavigationExtras = {
                 queryParams: {
-                    "email": data["email"],
-                    "firstName": data["firstName"],
-                    "lastName": data["lastName"],
+                    "email": data["user"]["email"],
+                    "firstName":  data["user"]["firstName"],
+                    "lastName": data["user"]["lastName"],
+                    "role": data["user"]["role"]
                 }
             };
             this.router.navigate(['home'], navigationExtras);

@@ -78,4 +78,20 @@ export class HomeService {
   placeOrder() {
     return this.apiService.post(constant.baseUrl+constant.urls.placeOrder, null);
   }
+
+  getMyOrders() {
+    return this.apiService.get(constant.baseUrl+constant.urls.getmyOrders);
+  }
+
+  getOrderDetails(orderId: number) {
+    return this.apiService.get(constant.baseUrl+constant.urls.getOrderDetails+"?id="+orderId);
+  }
+
+  getAllUsers() {
+    return this.apiService.get(constant.baseUrl+constant.urls.getAllUsers);
+  }
+
+  getAllProducts() {
+    return this.apiService.get(constant.baseUrl+constant.urls.getAllProducts);
+  }
 }

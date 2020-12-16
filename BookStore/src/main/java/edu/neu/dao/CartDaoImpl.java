@@ -45,4 +45,11 @@ public class CartDaoImpl implements CartDao {
         sessionFactory.getCurrentSession().update(cart);
         return cart;
     }
+
+    @Override
+    public void deleteAllItemsFromCart(Cart cart) {
+        Query q =sessionFactory.getCurrentSession().createQuery("Delete FROM CartItem WHERE shoppingCart =: cart");
+        q.setParameter("cart", cart);
+        q.executeUpdate();
+    }
 }

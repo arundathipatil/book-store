@@ -5,23 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name="orderTab")
-public class Order {
+public class OrderDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @ManyToOne
-    @JoinColumn(name = "email")
     private User user;
-
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
-    @JsonIgnore
     private List<OrderDetail> orderItems;
-
-    @Column(name = "totalPrice", nullable = false)
     private double totalPrice;
 
     public int getId() {

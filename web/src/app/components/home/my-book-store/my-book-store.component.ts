@@ -52,7 +52,7 @@ export class MyBookStoreComponent {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private homeService: HomeService, public dialog: MatDialog, private router: Router) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.homeService.getAllBooksByemail(this.currentUser.email)
       .subscribe((data) => {
         this.bookList = data;
@@ -128,8 +128,8 @@ export class MyBookStoreComponent {
   }
 
   navigateToBookDetails(data) {
-    localStorage.setItem("bookDetails", JSON.stringify(data));
-    localStorage.setItem("navigatedFrom", "1");
+    sessionStorage.setItem("bookDetails", JSON.stringify(data));
+    sessionStorage.setItem("navigatedFrom", "1");
     this.router.navigate(['home/bookDetails']);
   }
 

@@ -16,10 +16,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
+
 import { UpdateProfileDialogComponent } from './components/common/update-profile-dialog/update-profile-dialog.component';
 import { ChangePasswordDialogComponent } from './components/common/change-password-dialog/change-password-dialog.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpConfigInterceptor } from './interceptor/http-config-interceptor';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import { HttpConfigInterceptor } from './interceptor/http-config-interceptor';
     // HomeComponent,
     RegistrationComponent,
     UpdateProfileDialogComponent,
-    ChangePasswordDialogComponent
+    ChangePasswordDialogComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { HttpConfigInterceptor } from './interceptor/http-config-interceptor';
     MatTableModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [
     AuthenticationService,

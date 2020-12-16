@@ -9,6 +9,9 @@ import { CartComponent } from './cart/cart.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { ViewUsersComponent } from './view-users/view-users.component';
+import { ViewProductsComponent } from './view-products/view-products.component';
 
 const routes: Routes = [
     // {path: '' , component : HomeComponent},
@@ -21,7 +24,10 @@ const routes: Routes = [
                 {path: 'cart', component: CartComponent},
                 {path: 'bookDetails', component: BookDetailsComponent},
                 {path: 'confirmOrder', component: ConfirmOrderComponent},
-                {path: 'myOrders', component: MyOrdersComponent}]
+                {path: 'myOrders', component: MyOrdersComponent},
+                {path: 'orderDetail', component: OrderDetailComponent},
+                {path: 'viewUsers', component: ViewUsersComponent},
+                {path: 'viewProducts', component: ViewProductsComponent}]
     }
 ];
 

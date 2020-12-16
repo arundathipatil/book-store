@@ -1,1 +1,18 @@
-<p>my-orders works!</p>
+<p>Your Orders</p>
+
+<mat-card>Simple card</mat-card>
+
+
+<div>
+    <ng-container *ngFor="let order of orderList">
+    <div style="margin: 1em;border: 1px solid springgreen;width: 10em;height: 10em;">
+        <div style="background:springgreen;">
+            <p>Order Id : {{order?.id}}</p>    
+        </div>
+        <div>
+            <p>Total amount : {{order?.totalPrice}}</p>
+        </div>
+        <button (click)="showOrderDetail(order)">Order Details</button>
+    </div>
+</ng-container>
+</div>

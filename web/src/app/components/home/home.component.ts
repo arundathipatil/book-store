@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
       this.loggedinUser["lastName"] = params["lastName"];
       this.loggedinUser["email"] = params["email"];
       this.loggedinUser["password"] = "";
+      this.loggedinUser["role"] = params["role"];
 
       this.firstName = new FormControl(this.loggedinUser.firstName, Validators.required);
       this.lastName = new FormControl(this.loggedinUser.lastName, Validators.required);
@@ -41,6 +42,12 @@ export class HomeComponent implements OnInit {
       Validators.required,
       Validators.email
       ]);
+
+      this.loggedinUser["firstName"] = this.authenticationService.currentUserValue?.firstName;
+      this.loggedinUser["lastName"] = this.authenticationService.currentUserValue?.lastName;
+      this.loggedinUser["email"] = this.authenticationService.currentUserValue?.email;
+      this.loggedinUser["password"] = "";
+      this.loggedinUser["role"] = this.authenticationService.currentUserValue?.role;
       this.userDetailsForm = new FormGroup({
         firstName: this.firstName,
         lastName: this.lastName,

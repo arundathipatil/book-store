@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+
+    thead {
+      background: black !important;
+    }
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 10%;
+  }
+
+.mat-table{
+  background-color: #c2185b !important;
+}
+
+.mat-cell, .mat-footer-cell {
+  color: black !important;
+}
+
+.mat-table thead {
+  background: black !important;
+}

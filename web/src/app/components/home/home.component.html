@@ -1,4 +1,5 @@
-<div style="cursor: pointer;" class="menu-container">
+<div class="homeBody">
+<div style="cursor: pointer;" class="menu-container" *ngIf="loggedinUser?.role != 'Admin'">
   <span style="cursor: pointer;"> <a [routerLink] = "['welcome']" loggedinUser> Home</a></span>
   <span> <a [routerLink] = "['myBookStore']"> My Book Store </a></span>
   <span> <a [routerLink] = "['addBook']"> Add Book </a> </span>
@@ -6,4 +7,11 @@
   <span> <a [routerLink] = "['cart']">Cart</a> </span>
   <span> <a [routerLink] = "['myOrders']">My Orders</a> </span>
 </div>
+
+<div style="cursor: pointer;" class="menu-container" *ngIf="loggedinUser?.role == 'Admin'">
+  <span style="cursor: pointer;"> <a [routerLink] = "['welcome']" loggedinUser> Home</a></span>
+  <span style="cursor: pointer;"> <a [routerLink] = "['viewUsers']"> View Users</a></span>
+  <span style="cursor: pointer;"> <a [routerLink] = "['viewProducts']"> View All Products</a></span>
+</div>
 <router-outlet></router-outlet>
+</div>

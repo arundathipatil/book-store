@@ -28,7 +28,7 @@ export class AppComponent {
     if (this.authService.currentUserValue) { 
       this.loggedIn = true;
       this.user = new User();
-      this.user = JSON.parse(localStorage.getItem('currentUser'));
+      this.user = JSON.parse(sessionStorage.getItem('currentUser'));
     } else{
       this.loggedIn = false;
     };
@@ -36,7 +36,7 @@ export class AppComponent {
 
 
   logout() {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.user = JSON.parse(sessionStorage.getItem('currentUser'));
     this.authService.logout(this.user.email);
     // this.authService.logoutBackendSession(this.user.email)
     // .subscribe(data=>{
@@ -49,7 +49,7 @@ export class AppComponent {
 
   updateUserDeatils(): void {
     this.user = new User();
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.user = JSON.parse(sessionStorage.getItem('currentUser'));
     const dialogRef = this.dialog.open(UpdateProfileDialogComponent, {
       width: '250px',
       data: this.user
@@ -70,7 +70,7 @@ export class AppComponent {
 
   changePassword() {
     this.user = new User();
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.user = JSON.parse(sessionStorage.getItem('currentUser'));
     let pwddata : ChangePWD = new ChangePWD();
 
     pwddata.newPassword = "";

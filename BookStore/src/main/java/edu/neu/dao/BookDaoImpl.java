@@ -28,8 +28,9 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> listBooks() {
-//        Query q =sessionFactory.getCurrentSession().createQuery("Delete FROM Book WHERE id = :id");
-        return null;
+        Query q =sessionFactory.getCurrentSession().createQuery("FROM Book");
+        List<Book> bookList = q.list();
+        return bookList;
     }
 
 

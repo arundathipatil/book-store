@@ -1,9 +1,6 @@
 package edu.neu.controller;
 
-import edu.neu.model.Book;
-import edu.neu.model.CartItem;
-import edu.neu.model.Order;
-import edu.neu.model.User;
+import edu.neu.model.*;
 import edu.neu.service.BookService;
 import edu.neu.service.CartService;
 import edu.neu.service.OrderService;
@@ -93,10 +90,10 @@ public class BuyerController {
     @RequestMapping(value = "/confirmOrder", method = RequestMethod.GET)
     public ResponseEntity<?> confirmOrder(@RequestHeader(value="Authorization",required = true) String requestTokenHeader) {
         User user;
-        Order order;
+        OrderDTO order;
         try{
             user = userExtractor.getUserFromtoken(requestTokenHeader);
-            order = orderService.confirmOrder(user);
+            order = orderService.confirmOrderDTO(user);
             return ResponseEntity.ok(order);
         } catch (Exception ex){
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -106,14 +103,41 @@ public class BuyerController {
     @RequestMapping(value = "/placeOrder", method = RequestMethod.POST)
     public ResponseEntity<?> placeOrder(@RequestHeader(value="Authorization",required = true) String requestTokenHeader) {
         User user;
-        Order order;
+        Order order = new Order();
         try {
             user = userExtractor.getUserFromtoken(requestTokenHeader);
-            order = orderService.placeOrder(user);
+            orderService.placeOrder(user);
             return ResponseEntity.ok(order);
+//            return ResponseEntity.ok("Order Placed");
 
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(value = "/getOrderList", method = RequestMethod.GET)
+    public ResponseEntity<?> getOrders(@RequestHeader(value="Authorization",required = true) String requestTokenHeader) {
+        User user;
+        List<Order> orders;
+        try{
+            user = userExtractor.getUserFromtoken(requestTokenHeader);
+            orders = orderService.getAllOrdersByUserId(user);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok(orders);
+    }
+
+    @RequestMapping(value = "/getOrderDetails", method = RequestMethod.GET)
+    public ResponseEntity<?> getOrderDetails(@RequestHeader(value="Authorization",required = true) String requestTokenHeader, @RequestParam int id) {
+        User user;
+        List<OrderDetail> orderItems;
+        try{
+            user = userExtractor.getUserFromtoken(requestTokenHeader);
+            orderItems = orderService.getOrderDetails(id);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok(orderItems);
     }
 }

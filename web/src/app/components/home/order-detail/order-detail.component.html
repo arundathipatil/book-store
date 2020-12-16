@@ -1,0 +1,18 @@
+<p>ORDER DETAILS</p>
+
+<div>
+    <ng-container *ngFor="let order of orderItems">
+    <div style="margin: 1em;border: 1px solid springgreen;width: 14em;height: 14em;">
+        <div style="background:springgreen;">
+            <p>Order Item Id : {{order?.id}}</p> 
+            <p>Book Name :  {{order?.book?.title}}</p>   
+        </div>
+        <div>
+            <p>Amount per Item : {{order?.book?.price}}</p>
+            <p>Quantity : {{order?.quantity}}</p>
+            <p>Total Price : {{order?.book?.price * order?.quantity}}</p>
+            <p>Seller : {{order?.book?.user?.firstName}}</p>
+        </div>
+    </div>
+</ng-container>
+</div>

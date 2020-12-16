@@ -11,4 +11,5 @@ public interface CartDao {
     public CartItem addBookToCart(CartItem cartItem);
     public void deleteBookFromCart(int id);
     public Cart updateCart(Cart cart);
+    public void deleteAllItemsFromCart(Cart cart);
 }

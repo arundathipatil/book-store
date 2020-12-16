@@ -26,7 +26,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> listUsers() {
-        return null;
+        Query q = sessionFactory.getCurrentSession().createQuery("From User");
+        List<User> users = q.list();
+        return users;
     }
 
     @Override

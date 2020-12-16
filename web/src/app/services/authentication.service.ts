@@ -17,7 +17,7 @@ export class AuthenticationService {
     public isloggedIn: BehaviorSubject<boolean>;
 
     constructor(private http: HttpClient, private api: ApiService) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('currentUser')));
 
         this.currentUser = this.currentUserSubject.asObservable();
 
@@ -29,21 +29,21 @@ export class AuthenticationService {
     }
 
     login(user: User, token: string) {
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    localStorage.setItem("authToken", token);
+                    sessionStorage.setItem('currentUser', JSON.stringify(user));
+                    sessionStorage.setItem("authToken", token);
                     this.currentUserSubject.next(user);
                     this.isloggedIn.next(true);
     }
 
     logout(email) {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('authToken');
-        this.logoutBackendSession(email).subscribe(data=>{
-          console.log("loggedout");
-        }, err=>{
-          console.log("erloggedout");
-        })
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('authToken');
+        // this.logoutBackendSession(email).subscribe(data=>{
+        //   console.log("loggedout");
+        // }, err=>{
+        //   console.log("erloggedout");
+        // })
         this.currentUserSubject.next(null);
         this.isloggedIn.next(false);
     }

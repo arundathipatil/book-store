@@ -13,7 +13,7 @@ import { map, catchError } from 'rxjs/operators';
 
 export class HttpConfigInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token: string = localStorage.getItem('authToken');
+        const token: string = sessionStorage.getItem('authToken');
 
         if (token) {
             request = request.clone({ headers: request.headers.set('Authorization', token) });
