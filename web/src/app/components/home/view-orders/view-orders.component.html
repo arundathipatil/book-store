@@ -1,0 +1,21 @@
+<div style="margin: 2em;font:21px Arial, sans-serif">
+    <p>All Orders</p>
+</div>
+
+<div style="display: flex;flex-direction: row;flex-wrap: wrap;">
+    <ng-container *ngFor="let order of orderList">
+    <div style="margin: 1em;border: 1px solid springgreen;width: 14em;height: 17em;">
+        <div style="background:springgreen;">
+            <p>Order Id : {{order?.id}}</p>    
+        </div>
+        <div>
+            <p>User Details: Ordered By</p>
+                <p>Email: {{ order?.user?.email }}</p>
+                <p>First Name: {{ order?.user?.firstName }}</p>
+                <p>Last Name: {{ order?.user?.lastName }}</p>
+            <p>Total amount : {{order?.totalPrice}}</p>
+        </div>
+        <button (click)="showOrderDetail(order)">Order Details</button>
+    </div>
+</ng-container>
+</div>

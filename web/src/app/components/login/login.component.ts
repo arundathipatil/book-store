@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
           }
           
         }, error=>{
-          alert("There was error Logging in!Please try latter")
+          alert(error?.error + ": There was error Logging in!Please try Again")
         })
       }
 
@@ -100,8 +100,8 @@ export class LoginComponent implements OnInit {
           } else {
             alert("Unable to send reset password link! Please try again later");
           }
-        }, err=>{
-          console.log("Unable to send reset password link! Please try again later");
+        }, error=>{
+          console.log(error?.error + ": Unable to send reset password link! Please try again later");
         })
       }
   

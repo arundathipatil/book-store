@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       this.loggedinUser["email"] = params["email"];
       this.loggedinUser["password"] = "";
       this.loggedinUser["role"] = params["role"];
-
+      
       this.firstName = new FormControl(this.loggedinUser.firstName, Validators.required);
       this.lastName = new FormControl(this.loggedinUser.lastName, Validators.required);
       this.email = new FormControl(this.loggedinUser.email, [
@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
       this.loggedinUser["email"] = this.authenticationService.currentUserValue?.email;
       this.loggedinUser["password"] = "";
       this.loggedinUser["role"] = this.authenticationService.currentUserValue?.role;
+      this.loggedinUser["address"] = this.authenticationService.currentUserValue?.address;
       this.userDetailsForm = new FormGroup({
         firstName: this.firstName,
         lastName: this.lastName,
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit {
     .subscribe(data=>{
       alert("User details Updated Succesfully");
     }, error=>{
-        alert("Issue Saving User details");
+        alert(error?.error + ": Issue Saving User details");
     })
   }
 

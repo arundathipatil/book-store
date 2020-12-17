@@ -62,7 +62,7 @@ export class AppComponent {
         .subscribe(data=>{
           alert("User details updated successfully");
         }, error=>{
-          alert("User details could not be saved Successfully");
+          alert(error?.error + " : User details could not be saved Successfully");
         });
       }      
     });
@@ -89,7 +89,7 @@ export class AppComponent {
         .subscribe(data=>{
           alert("Password updated successfully");
         }, error=>{
-          alert("Password could not be updated Successfully");
+          alert(error?.error + " : Password could not be updated Successfully");
         });
       }      
     });

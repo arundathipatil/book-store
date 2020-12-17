@@ -69,8 +69,8 @@ export class BookDetailsComponent implements OnInit {
     this.homeService.uploadPhoto(data)
       .subscribe(data => {
         console.log(JSON.stringify(data));
-      }, err => {
-        alert("issue uploading the photo");
+      }, error => {
+        alert(error?.error + ": issue uploading the photo");
       });
   }
 
@@ -82,7 +82,7 @@ export class BookDetailsComponent implements OnInit {
       this.domSanitizer.bypassSecurityTrustUrl(this.imageList[1]);
 
     }, error=>{
-      alert("Unable to fetch Images");
+      alert(error?.error + ": Unable to fetch Images");
     })
   }
 
@@ -90,8 +90,8 @@ export class BookDetailsComponent implements OnInit {
     this.homeService.deleteImage(image.id)
     .subscribe(data=>{
       alert("Image Deleted Successfully");
-    }, err=>{
-      alert("Issue Deleting the photo");
+    }, error=>{
+      alert(error?.error + "Issue Deleting the photo");
     })
   }
 }

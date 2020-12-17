@@ -20,8 +20,9 @@ export class RegistrationComponent implements OnInit {
   lastName: FormControl;
   email: FormControl;
   password: FormControl;
-  confirmPassword: FormControl
-  role: FormControl
+  confirmPassword: FormControl;
+  role: FormControl;
+  address: FormControl;
 
   constructor(private registrationService: RegistrationService, private route: Router) { }
 
@@ -53,13 +54,14 @@ export class RegistrationComponent implements OnInit {
     //   )]
     // );
     this.role = new FormControl('', [Validators.required]);
-
+    this.address = new FormControl('', [Validators.required]);
     this.registrationForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
       password: this.password,
-      role: this.role
+      role: this.role,
+      address: this.address
       // confirmPassword: this.confirmPassword
     })
   }
@@ -71,7 +73,8 @@ export class RegistrationComponent implements OnInit {
       lastName: this.lastName.value,
       email: this.email.value,
       password: this.password.value,
-      role: this.role.value
+      role: this.role.value,
+      address: this.address.value
     }
     console.warn(this.registrationForm.value);
     this.registrationService.registerUser(user)
@@ -84,7 +87,7 @@ export class RegistrationComponent implements OnInit {
 
           this.route.navigateByUrl("");
         }), error => {
-          alert("There was a problem creating User! Please try again later");
+          alert("There was a problem creating User! "+ error?.error +" Please try again later");
         });
   }
 

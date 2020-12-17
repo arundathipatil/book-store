@@ -35,6 +35,8 @@ export class ConfirmOrderComponent implements OnInit {
       // this.dataSource = new MatTableDataSource(this.order);
       this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    }, error=>{
+      alert("Error: " + error?.error);
     })
    }
 
@@ -44,7 +46,7 @@ export class ConfirmOrderComponent implements OnInit {
       alert("Order Placed Succesfully");
       this.router.navigate(['home/welcome']);
      }, error=>{
-       alert("Unable to Place order! Please try again later");
+       alert(error?.error + " :Unable to Place order! Please try again later");
      })
    }
 

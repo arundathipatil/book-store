@@ -65,7 +65,7 @@ export class CartComponent implements OnInit {
     .subscribe(data=>{
       alert("Irem removed from cart successfully");
     }, error=>{
-      alert("Item could not be removed from cart");
+      alert(error?.error + " :Item could not be removed from cart");
     })
   }
 

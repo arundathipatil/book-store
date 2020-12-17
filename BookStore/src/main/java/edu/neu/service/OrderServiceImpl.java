@@ -135,5 +135,10 @@ public class OrderServiceImpl implements OrderService {
         return  o;
     }
 
+    @Override
+    public List<Order> list() {
+        return orderDao.list();
+    }
+
 
 }

@@ -94,4 +94,16 @@ export class HomeService {
   getAllProducts() {
     return this.apiService.get(constant.baseUrl+constant.urls.getAllProducts);
   }
+
+  getAllOrders() {
+    return this.apiService.get(constant.baseUrl+constant.urls.getAllOrders);
+  }
+
+  updateUserByAdmin(user: User) {
+    return this.apiService.post(constant.baseUrl+constant.urls.updateUserByAdmin, user);
+  }
+
+  updatBookByAdmin(book: Book) {
+    return this.apiService.put(constant.baseUrl+constant.urls.updateBookByAdmin, book);
+  }
 }

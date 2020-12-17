@@ -12,6 +12,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
+import { ViewOrdersComponent } from './view-orders/view-orders.component';
 
 const routes: Routes = [
     // {path: '' , component : HomeComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
                 {path: 'myOrders', component: MyOrdersComponent},
                 {path: 'orderDetail', component: OrderDetailComponent},
                 {path: 'viewUsers', component: ViewUsersComponent},
-                {path: 'viewProducts', component: ViewProductsComponent}]
+                {path: 'viewProducts', component: ViewProductsComponent},
+                {path: 'viewOrders', component: ViewOrdersComponent}]
     }
 ];
 

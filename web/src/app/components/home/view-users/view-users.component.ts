@@ -31,7 +31,7 @@ export class ViewUsersComponent implements OnInit {
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         }, error=>{
-            alert("Unable to fetch User list. Please try again later!");
+            alert(error?.error + " :Unable to fetch User list. Please try again later!");
         });
   }
 
@@ -47,11 +47,11 @@ export class ViewUsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if(result!=null) {
-        this.homeService.updateUserDetails(result)
+        this.homeService.updateUserByAdmin(result)
         .subscribe(data=>{
           alert("User details updated successfully");
         }, error=>{
-          alert("User details could not be saved Successfully");
+          alert(error?.error + " : User details could not be saved Successfully");
         });
       }      
     });

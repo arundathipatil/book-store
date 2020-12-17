@@ -62,7 +62,7 @@ export class AddBookComponent implements OnInit {
     .subscribe(data=>{
         alert("Book Saved!");
     }, error=>{
-      alert("some issue");
+      alert(error?.error + ": Issue Adding Book to Store");
     })
   }
 }

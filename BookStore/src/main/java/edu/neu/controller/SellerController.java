@@ -28,7 +28,7 @@ public class SellerController {
     public ResponseEntity<?> saveBook(@RequestHeader(value="Authorization",required = true) String requestTokenHeader, @RequestBody Book book) {
 
         User user = new User();
-        boolean t = checkBookInput(book);
+        boolean t = checkIfValidBookInput(book);
         if(t) {
             return new ResponseEntity<>("Invalid Input! Please correct your inputs and re-submit", HttpStatus.BAD_REQUEST);
         }
@@ -87,7 +87,10 @@ public class SellerController {
         }
     }
 
-    private boolean checkBookInput(Book book) {
+    private boolean checkIfValidBookInput(Book book) {
+        if(book == null) {
+            return false;
+        }
         try {
             int isbn = Integer.parseInt(book.getIsbn());
         } catch (Exception ex) {

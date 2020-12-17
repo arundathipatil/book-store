@@ -81,6 +81,19 @@
       </div>
     </div>
   </div>
+
+  <div>
+    <label>
+      Address:
+      <input id="address" type="text" formControlName="address">
+    </label>
+    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+
+      <div *ngIf="address.errors.required" style="color: red;">
+        address is required.
+      </div>
+    </div>
+  </div>
   <!-- <div>
     <label>
       Confirm Password:

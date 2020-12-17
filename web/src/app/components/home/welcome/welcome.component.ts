@@ -52,7 +52,7 @@ export class WelcomeComponent implements OnInit {
     .subscribe(data=>{
       alert("User details Updated Succesfully");
     }, error=>{
-        alert("Issue Saving User details");
+        alert(error?.error + " :Issue Saving User details");
     })
   }
 

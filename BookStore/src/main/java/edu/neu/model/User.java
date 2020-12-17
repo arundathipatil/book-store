@@ -39,8 +39,19 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
 
+    @Column(name = "address")
+    private String address;
+
     public String getPassword() {
         return password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setPassword(String password) {

@@ -54,4 +54,12 @@ public class OrderDaoImpl implements OrderDao {
         sessionFactory.getCurrentSession().save(orderItem);
         return orderItem;
     }
+
+    @Override
+    public List<Order> list() {
+        List<Order> orders;
+        Query q = sessionFactory.getCurrentSession().createQuery("FROM Order");
+        orders = q.list();
+        return orders;
+    }
 }

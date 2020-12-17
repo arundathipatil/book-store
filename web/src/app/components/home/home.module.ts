@@ -24,6 +24,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
+import { ViewOrdersComponent } from './view-orders/view-orders.component';
 
 
 
@@ -38,7 +39,7 @@ import { ViewProductsComponent } from './view-products/view-products.component';
     UpdateBookDialogComponent, 
     BuyBooksComponent, 
     CartComponent, 
-    BookDetailsComponent, ConfirmOrderComponent, MyOrdersComponent, OrderDetailComponent, ViewUsersComponent, ViewProductsComponent],
+    BookDetailsComponent, ConfirmOrderComponent, MyOrdersComponent, OrderDetailComponent, ViewUsersComponent, ViewProductsComponent, ViewOrdersComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

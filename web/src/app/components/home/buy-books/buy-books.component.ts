@@ -87,7 +87,7 @@ export class BuyBooksComponent implements OnInit {
     .subscribe(data=>{
       alert("Item added to cart");
     }, error=>{
-      alert("Item could not be added successfully");
+      alert(error?.error + " :Item could not be added successfully");
     });
   }
 

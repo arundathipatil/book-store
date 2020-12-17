@@ -28,11 +28,6 @@ public class ShoppingInterceptor implements HandlerInterceptor {
         return true;
     }
 
-//    @Override
-//    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-//        System.out.println("POST HANDLE");
-//    }
-
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         System.out.println("AFTER COMPLETION");
@@ -44,4 +39,9 @@ public class ShoppingInterceptor implements HandlerInterceptor {
         }
         return false;
     }
+
+    //    @Override
+//    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+//        System.out.println("POST HANDLE");
+//    }
 }

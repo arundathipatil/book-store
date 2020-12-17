@@ -21,7 +21,7 @@ export class OrderDetailComponent implements OnInit {
       .subscribe(data=>{
           this.orderItems = data;
       }, error=>{
-        alert("Unable to fetch Order Details");
+        alert(error?.error + " :Unable to fetch Order Details");
       })
   });
   }
