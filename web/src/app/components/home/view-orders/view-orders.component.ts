@@ -29,4 +29,13 @@ export class ViewOrdersComponent implements OnInit {
   this.router.navigate(['home/orderDetail'], navigationExtras);
   }
 
+  cancelOrder(order: Order) {
+    this.homervice.cancelOrder(order)
+    .subscribe(data=>{
+      alert("Order Cancelled Succesfully");
+    }, error=>{
+        alert(error?.error + ": Unable to cancel order! Please try again later!");
+    });
+  }
+
 }

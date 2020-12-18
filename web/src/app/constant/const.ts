@@ -23,6 +23,7 @@ export const constant = {
          "getAllOrders": "/getAllOrders",
          "updateUserByAdmin": "/updateUserByAdmin",
          "updateBookByAdmin": "/updateBookByAdmin",
+         "cancelOrder": "/cancelOrderByAdmin",
         // "register" : "/api/registerUser",
         // "login": "/api/login",
         // "getUserDeatils": "api/userDetails",

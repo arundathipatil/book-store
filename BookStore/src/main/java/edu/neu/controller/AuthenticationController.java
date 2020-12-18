@@ -64,7 +64,4 @@ public class AuthenticationController {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 
     }
-
-//    @RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = MediaType.APPLICATION_JSON_VALUE,value = "/authenticate", method = RequestMethod.POST)
 }

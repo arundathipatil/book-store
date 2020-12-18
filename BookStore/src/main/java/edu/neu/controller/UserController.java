@@ -71,9 +71,11 @@ public class UserController {
             if(user.getEmail().equals(u.getEmail())) {
                 u.setPassword(user.getPassword());
                 u.setRole(user.getRole());
-                if(!validateUserInput(user)) {
-                    return new ResponseEntity<>("Invalid User Input!Please Correct Input and retry" , HttpStatus.BAD_REQUEST);
-                }
+
+                // check on this validations while update
+//                if(!validateUserInput(u)) {
+//                    return new ResponseEntity<>("Invalid User Input!Please Correct Input and retry" , HttpStatus.BAD_REQUEST);
+//                }
                 userService.UpdateUser(u);
             } else {
                 return new ResponseEntity<String>("UNAUTHORIZED" , HttpStatus.UNAUTHORIZED);

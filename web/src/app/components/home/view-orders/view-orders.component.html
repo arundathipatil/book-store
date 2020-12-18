@@ -4,18 +4,20 @@
 
 <div style="display: flex;flex-direction: row;flex-wrap: wrap;">
     <ng-container *ngFor="let order of orderList">
-    <div style="margin: 1em;border: 1px solid springgreen;width: 14em;height: 17em;">
+    <div style="margin: 1em;border: 1px solid springgreen;width: 14em;height: 20em;">
         <div style="background:springgreen;">
             <p>Order Id : {{order?.id}}</p>    
         </div>
         <div>
-            <p>User Details: Ordered By</p>
+            <p>User Details: <br/> Ordered By</p>
                 <p>Email: {{ order?.user?.email }}</p>
                 <p>First Name: {{ order?.user?.firstName }}</p>
                 <p>Last Name: {{ order?.user?.lastName }}</p>
             <p>Total amount : {{order?.totalPrice}}</p>
+            <p>Order Status : {{order?.status}}</p>
         </div>
         <button (click)="showOrderDetail(order)">Order Details</button>
+        <button *ngIf="order?.status != 'Cancelled'" (click)="cancelOrder(order)">Cancel Order</button>
     </div>
 </ng-container>
 </div>

@@ -14,4 +14,5 @@ public interface OrderService {
     public List<OrderDetail> getOrderDetails(int orderId);
     public OrderDTO confirmOrderDTO(User user) throws Exception;
     public List<Order> list();
+    public Order cancelOrder(Order order) throws Exception;
 }

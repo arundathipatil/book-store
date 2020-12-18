@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -60,6 +61,8 @@ public class OrderServiceImpl implements OrderService {
         }
         o.setOrderItems(orderItems);
         o.setTotalPrice(orderTotalPrice);
+        o.setStatus("Active");
+        o.setOrderDate(new Date());
         return  o;
     }
 
@@ -138,6 +141,29 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> list() {
         return orderDao.list();
+    }
+
+    @Override
+    public Order cancelOrder(Order order) throws Exception {
+        Order currentOrder;
+        currentOrder = orderDao.getOrderByOrderId(order.getId());
+        if(currentOrder.getStatus() != null && currentOrder.getStatus().equals("Cancelled")) {
+           throw new Exception("Order status is already cancelled");
+        }
+        currentOrder.setStatus("Cancelled");
+        currentOrder = orderDao.updateOrder(currentOrder);
+        List<OrderDetail> orderItems = orderDao.getOrderDetail(currentOrder);
+        for(int i=0; i< orderItems.size(); i++) {
+            Book b = orderItems.get(i).getBook();
+            if(b != null) {
+                Book book = bookdao.findById(b.getId());
+                if(book != null ) {
+                    book.setQuantity(book.getQuantity()+orderItems.get(i).getQuantity());
+                    bookdao.UpdateBook(book);
+                }
+            }
+        }
+        return currentOrder;
     }
 
 

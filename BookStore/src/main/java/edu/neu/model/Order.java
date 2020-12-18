@@ -3,6 +3,7 @@ package edu.neu.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,28 @@ public class Order {
 
     @Column(name = "totalPrice", nullable = false)
     private double totalPrice;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name ="orderDate")
+    private Date orderDate;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
 
     public int getId() {
         return id;

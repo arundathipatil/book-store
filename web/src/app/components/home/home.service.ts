@@ -5,6 +5,7 @@ import { User } from '../../models/User';
 import { Book } from '../../models/book';
 import { Cart } from '../../models/cart';
 import { CartItem } from '../../models/cartItem';
+import { Order } from '../../models/order'
 
 
 @Injectable({
@@ -105,5 +106,9 @@ export class HomeService {
 
   updatBookByAdmin(book: Book) {
     return this.apiService.put(constant.baseUrl+constant.urls.updateBookByAdmin, book);
+  }
+
+  cancelOrder(order: Order) {
+    return this.apiService.post(constant.baseUrl+constant.urls.cancelOrder, order);
   }
 }

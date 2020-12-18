@@ -53,6 +53,7 @@ public class UserServiceImpl implements UserService {
         newUserObj.setLastName(user.getLastName());
         newUserObj.setPassword(user.getPassword());
         newUserObj.setRole(user.getRole());
+        newUserObj.setAddress(user.getAddress());
         userdao.UpdateUser(newUserObj);
     }
 }

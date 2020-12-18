@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   firstName: FormControl;
   lastName: FormControl;
   email: FormControl;
+  address: FormControl;
   state$: any;
   loggedinUser: User = new User();
   constructor(private homervice: HomeService, 
@@ -35,6 +36,7 @@ export class HomeComponent implements OnInit {
       this.loggedinUser["email"] = params["email"];
       this.loggedinUser["password"] = "";
       this.loggedinUser["role"] = params["role"];
+      this.loggedinUser["address"] = params["address"];
       
       this.firstName = new FormControl(this.loggedinUser.firstName, Validators.required);
       this.lastName = new FormControl(this.loggedinUser.lastName, Validators.required);
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit {
       Validators.required,
       Validators.email
       ]);
+      this.address = new FormControl(this.loggedinUser.address, [Validators.required]);
 
       this.loggedinUser["firstName"] = this.authenticationService.currentUserValue?.firstName;
       this.loggedinUser["lastName"] = this.authenticationService.currentUserValue?.lastName;
@@ -65,6 +68,7 @@ export class HomeComponent implements OnInit {
     user["firstName"] = this.firstName.value;
     user["lastName"] = this.lastName.value;
     user["email"] = this.email.value;
+    user["address"] = this.address?.value;
     // user["password"] = this.pa
     this.homervice.updateUserDetails(user)
     .subscribe(data=>{

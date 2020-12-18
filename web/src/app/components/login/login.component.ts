@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
                 "email": user["email"],
                 "firstName": user["firstName"],
                 "lastName": user["lastName"],
+                "address": user["address"]
             }
         };
           this.router.navigate(['home'], navigationExtras);
@@ -63,6 +64,7 @@ export class LoginComponent implements OnInit {
               user["firstName"] = data["user"]["firstName"];
               user["lastName"] = data["user"]["lastName"];
               user["role"] = data["user"]["role"];
+              user["address"] = data["user"]["address"];
               let token = data["token"];
               this.authenticationService.login(user, token);
               let navigationExtras: NavigationExtras = {
@@ -70,7 +72,8 @@ export class LoginComponent implements OnInit {
                     "email": data["user"]["email"],
                     "firstName":  data["user"]["firstName"],
                     "lastName": data["user"]["lastName"],
-                    "role": data["user"]["role"]
+                    "role": data["user"]["role"],
+                    "address": data["user"]["address"]
                 }
             };
             this.router.navigate(['home'], navigationExtras);

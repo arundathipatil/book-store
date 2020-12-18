@@ -1,9 +1,11 @@
-<p>ORDER DETAILS</p>
+<div style="margin: 2em;font:21px Arial, sans-serif">
+    <p>Order Details</p>
+</div>
 
 <div>
     <ng-container *ngFor="let order of orderItems">
-    <div style="margin: 1em;border: 1px solid springgreen;width: 14em;height: 14em;">
-        <div style="background:springgreen;">
+    <div style="margin: 1em;border: 1px solid aquamarine;width: 14em;height: 14em;">
+        <div style="background:aquamarine;">
             <p>Order Item Id : {{order?.id}}</p> 
             <p>Book Name :  {{order?.book?.title}}</p>   
         </div>

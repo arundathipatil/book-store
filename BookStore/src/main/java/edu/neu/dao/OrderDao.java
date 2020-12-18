@@ -13,4 +13,5 @@ public interface OrderDao {
     public List<OrderDetail> getOrderDetail(Order order);
     public OrderDetail addOrderItemToOrderDetails(OrderDetail orderItem);
     public List<Order> list();
+    public Order updateOrder(Order order);
 }

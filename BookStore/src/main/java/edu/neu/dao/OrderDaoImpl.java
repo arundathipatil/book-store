@@ -62,4 +62,10 @@ public class OrderDaoImpl implements OrderDao {
         orders = q.list();
         return orders;
     }
+
+    @Override
+    public Order updateOrder(Order order) {
+        sessionFactory.getCurrentSession().update(order);
+        return order;
+    }
 }

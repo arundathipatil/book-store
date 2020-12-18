@@ -32,6 +32,19 @@
 
   <div>
     <label>
+      Address:
+      <input id="address" type="text" formControlName="address" [(ngModel)]="data.address">
+    </label>
+    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+
+      <div *ngIf="firstName.errors.required" style="color: red;">
+        Address is required.
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label>
       User Name:
       <input id="email" type="text" formControlName="email" disabled [(ngModel)]="data.email">
     </label>

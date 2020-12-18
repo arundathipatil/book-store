@@ -16,6 +16,7 @@ export class WelcomeComponent implements OnInit {
   firstName: FormControl;
   lastName: FormControl;
   email: FormControl;
+  address: FormControl;
   state$: any;
   loggedinUser: User = new User();
    user: User = new User();
@@ -34,6 +35,7 @@ export class WelcomeComponent implements OnInit {
       user["email"] = data["email"];
       user["firstName"] = data["firstName"];
       user["lastName"] = data["lastName"];
+      user["address"] = data["address"];
       // this.authenticationService.login(user);
 
      }, error =>{
@@ -47,6 +49,7 @@ export class WelcomeComponent implements OnInit {
     user["firstName"] = this.firstName.value;
     user["lastName"] = this.lastName.value;
     user["email"] = this.email.value;
+    user["address"] = this.address.value;
     // user["password"] = this.pa
     this.homeService.updateUserDetails(user)
     .subscribe(data=>{

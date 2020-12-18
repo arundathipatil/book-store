@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +32,7 @@ public class SellerController {
 
         User user = new User();
         boolean t = checkIfValidBookInput(book);
-        if(t) {
+        if(!t) {
             return new ResponseEntity<>("Invalid Input! Please correct your inputs and re-submit", HttpStatus.BAD_REQUEST);
         }
         Book bookadded;
@@ -91,22 +94,46 @@ public class SellerController {
         if(book == null) {
             return false;
         }
-        try {
-            int isbn = Integer.parseInt(book.getIsbn());
-        } catch (Exception ex) {
-            return true;
+
+        if(book.getIsbn().equals(null) || book.getIsbn().equals("")) {
+            return false;
         }
 
-        if(book != null) {
-            if(book.getIsbn() == null || book.getIsbn().matches("<script>(.*?)</script>") || book.getIsbn().matches("\"<script(.*?)>\"") ) {
-                return true;
-            } else if (book.getTitle() == null || book.getTitle().matches("<script>(.*?)</script>") || book.getTitle().matches("\"<script(.*?)>\"")) {
-                return true;
-            } else if(book.getAuthors() == null || book.getAuthors().matches("<script>(.*?)</script>") || book.getAuthors().matches("\"<script(.*?)>\"")) {
-                return true;
-            }
+        if(!book.getIsbn().matches("^[0-9]*$") || book.getIsbn().matches("<script>(.*?)</script>") || book.getIsbn().matches("\"<script(.*?)>\"")) {
+            return false;
         }
-        return false;
+
+        if(book.getTitle().equals(null) || book.getTitle().equals("")) {
+            return false;
+        }
+
+        if(!book.getTitle().matches("[A-Za-z]*") || book.getTitle().matches("<script>(.*?)</script>") || book.getTitle().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+
+        if(book.getAuthors().equals(null) || book.getAuthors().equals("")) {
+            return false;
+        }
+
+        if(!book.getAuthors().matches("[A-Za-z]*") || book.getAuthors().matches("<script>(.*?)</script>") || book.getAuthors().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+        if(book.getPublicationDate().equals(null) || book.getPublicationDate().equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidDate(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            format.parse(date.toString());
+            return true;
+        }
+        catch(ParseException e){
+            return false;
+        }
+
     }
 
 

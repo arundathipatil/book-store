@@ -111,5 +111,21 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "/cancelOrderByAdmin" , method = RequestMethod.POST)
+    public ResponseEntity<?> cancelOrder(@RequestHeader(value="Authorization",required = true) String requestTokenHeader, @RequestBody Order order) {
+        User user;
+        try {
+            user = userExtractor.getUserFromtoken(requestTokenHeader);
+            if(user.getRole().equals("Admin")) {
+                order = orderService.cancelOrder(order);
+            } else {
+                return new ResponseEntity<>("UNAUTHORIZED" , HttpStatus.UNAUTHORIZED);
+            }
+            return ResponseEntity.ok(order);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage() +" :UNAUTHORIZED" , HttpStatus.UNAUTHORIZED);
+        }
+    }
+
 
 }

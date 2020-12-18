@@ -33,4 +33,8 @@ export class MyOrdersComponent implements OnInit {
     };
   this.router.navigate(['home/orderDetail'], navigationExtras);
   }
+
+  cancelOrder(order: Order) {
+
+  }
 }

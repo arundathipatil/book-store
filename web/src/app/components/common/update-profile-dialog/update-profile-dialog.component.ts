@@ -17,6 +17,7 @@ export class UpdateProfileDialogComponent implements OnInit {
   firstName: FormControl;
   lastName: FormControl;
   email: FormControl;
+  address: FormControl;
   constructor(public dialogRef: MatDialogRef<UpdateProfileDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User) { }
 
@@ -27,10 +28,12 @@ export class UpdateProfileDialogComponent implements OnInit {
     Validators.required,
     Validators.email
     ]);
+    this.address = new FormControl('', [Validators.required]);
     this.userDetailsForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
-      email: this.email
+      email: this.email,
+      address: this.address
     })
   }
 

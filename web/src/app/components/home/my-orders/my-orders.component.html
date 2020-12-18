@@ -1,17 +1,22 @@
-<div>
-    <p>Your Orders</p>
+<div style="margin: 2em;font:21px Arial, sans-serif">
+    <p>Your  Orders</p>
 </div>
 
 <div>
     <ng-container *ngFor="let order of orderList">
-    <div style="margin: 1em;border: 1px solid springgreen;width: 10em;height: 10em;">
+    <div style="margin: 1em;border: 1px solid springgreen;width: 13em;height: 18em;">
         <div style="background:springgreen;">
             <p>Order Id : {{order?.id}}</p>    
         </div>
         <div>
+            <p>Status: {{order?.status}}</p>
+            <p>Order Place on: {{order?.orderDate}}</p>
             <p>Total amount : {{order?.totalPrice}}</p>
+            <p>Delivery Address: {{ order?.user?.address}}</p>
+            <p></p>
         </div>
         <button (click)="showOrderDetail(order)">Order Details</button>
+        <!-- <button (click)="cancelOrder(order)">Cancel Order</button> -->
     </div>
 </ng-container>
 </div>

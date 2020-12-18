@@ -3,4 +3,6 @@ export class Order {
     buyersemail: string;
     orderItems: any;
     totalPrice: number;
+    status?: string;
+    orderDate?: Date;
 }

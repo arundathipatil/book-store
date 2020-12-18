@@ -1,3 +1,7 @@
+<div style="margin: 2em;font:21px Arial, sans-serif">
+    <p>Buy Books</p>
+</div>
+
 <div style="width: 80%; margin: auto;padding: 1em;">
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
@@ -41,7 +45,7 @@
             <!-- Seller Column -->
             <ng-container matColumnDef="userEmail">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Sold By </th>
-                <td mat-cell *matCellDef="let row"> {{row.userEmail}} </td>
+                <td mat-cell *matCellDef="let row"> {{row?.user?.firstName}} </td>
             </ng-container>
 
 
