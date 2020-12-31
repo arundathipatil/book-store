@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -50,6 +53,9 @@ public class AdminController {
         try{
             loggedInUser = userExtractor.getUserFromtoken(requestTokenHeader);
             if(loggedInUser.getRole().equals("Admin")) {
+                if(!validateUpdateUserInput(user)) {
+                    return new ResponseEntity<>("Invalid User Input!Please Correct Input and retry" , HttpStatus.BAD_REQUEST);
+                }
                 userService.UpdateUser(user);
                 return ResponseEntity.ok(user);
             } else {
@@ -84,6 +90,10 @@ public class AdminController {
         try {
             user = userExtractor.getUserFromtoken(requestTokenHeader);
             if(user.getRole().equals("Admin")) {
+                boolean t = checkIfValidBookInput(book);
+                if(!t) {
+                    return new ResponseEntity<>("Invalid Input! Please correct your inputs and re-submit", HttpStatus.BAD_REQUEST);
+                }
                 bookservice.UpdateBook(book);
                 return ResponseEntity.ok(book);
             } else {
@@ -127,5 +137,94 @@ public class AdminController {
         }
     }
 
+    private boolean validateUpdateUserInput(User u) {
+        if(u == null){
+            return false;
+        }
+        if((u.getFirstName().equals(null) || u.getFirstName().equals(""))) {
+            return false;
+        }
+        if(!u.getFirstName().matches( "[A-Za-z ]*" ) || u.getFirstName().matches("<script>(.*?)</script>") || u.getFirstName().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+
+        if(u != null && (u.getLastName().equals(null) || u.getLastName().equals(""))) {
+            return false;
+        }
+
+        if(!u.getLastName().matches( "[A-Za-z ]*" ) || u.getLastName().matches("<script>(.*?)</script>") || u.getLastName().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+
+        if(u.getEmail().equals(null) || u.getEmail().equals("")) {
+            return false;
+        }
+
+        if(!u.getEmail().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
+            return false;
+        }
+
+        if(u.getPassword().equals(null) || u.getPassword().equals("")) {
+            return false;
+        }
+
+        if(u.getPassword().matches("<script>(.*?)</script>") || u.getPassword().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+        boolean isValidRole = false;
+        if(u.getRole().equals("Admin") || u.getRole().equals("SB")) {
+            isValidRole = true;
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkIfValidBookInput(Book book) {
+        if(book == null) {
+            return false;
+        }
+
+        if(book.getIsbn().equals(null) || book.getIsbn().equals("")) {
+            return false;
+        }
+
+        if(!book.getIsbn().matches("^[0-9]*$") || book.getIsbn().matches("<script>(.*?)</script>") || book.getIsbn().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+
+        if(book.getTitle().equals(null) || book.getTitle().equals("")) {
+            return false;
+        }
+
+        if(!book.getTitle().matches("[A-Za-z ]*") || book.getTitle().matches("<script>(.*?)</script>") || book.getTitle().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+
+        if(book.getAuthors().equals(null) || book.getAuthors().equals("")) {
+            return false;
+        }
+
+        if(!book.getAuthors().matches("[A-Za-z ]*") || book.getAuthors().matches("<script>(.*?)</script>") || book.getAuthors().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+        if(book.getPublicationDate().equals(null) || book.getPublicationDate().equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidDate(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            format.parse(date.toString());
+            return true;
+        }
+        catch(ParseException e){
+            return false;
+        }
+
+    }
 
 }

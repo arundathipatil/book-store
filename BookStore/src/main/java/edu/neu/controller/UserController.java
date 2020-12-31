@@ -72,10 +72,10 @@ public class UserController {
                 u.setPassword(user.getPassword());
                 u.setRole(user.getRole());
 
-                // check on this validations while update
-//                if(!validateUserInput(u)) {
-//                    return new ResponseEntity<>("Invalid User Input!Please Correct Input and retry" , HttpStatus.BAD_REQUEST);
-//                }
+
+                if(!validateUpdateUserInput(u)) {
+                    return new ResponseEntity<>("Invalid User Input!Please Correct Input and retry" , HttpStatus.BAD_REQUEST);
+                }
                 userService.UpdateUser(u);
             } else {
                 return new ResponseEntity<String>("UNAUTHORIZED" , HttpStatus.UNAUTHORIZED);
@@ -121,7 +121,7 @@ public class UserController {
         if((u.getFirstName().equals(null) || u.getFirstName().equals(""))) {
             return false;
         }
-        if(!u.getFirstName().matches( "[A-Z][a-z]*" ) || u.getFirstName().matches("<script>(.*?)</script>") || u.getFirstName().matches("\"<script(.*?)>\"")) {
+        if(!u.getFirstName().matches( "[A-Za-z ]*" ) || u.getFirstName().matches("<script>(.*?)</script>") || u.getFirstName().matches("\"<script(.*?)>\"")) {
             return false;
         }
 
@@ -129,7 +129,7 @@ public class UserController {
             return false;
         }
 
-        if(!u.getLastName().matches( "[A-Z][a-z]*" ) || u.getLastName().matches("<script>(.*?)</script>") || u.getLastName().matches("\"<script(.*?)>\"")) {
+        if(!u.getLastName().matches( "[A-Za-z ]*" ) || u.getLastName().matches("<script>(.*?)</script>") || u.getLastName().matches("\"<script(.*?)>\"")) {
             return false;
         }
 
@@ -169,6 +169,50 @@ public class UserController {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
+    }
+
+    private boolean validateUpdateUserInput(User u) {
+        if(u == null){
+            return false;
+        }
+        if((u.getFirstName().equals(null) || u.getFirstName().equals(""))) {
+            return false;
+        }
+        if(!u.getFirstName().matches( "[A-Za-z ]*" ) || u.getFirstName().matches("<script>(.*?)</script>") || u.getFirstName().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+
+        if(u != null && (u.getLastName().equals(null) || u.getLastName().equals(""))) {
+            return false;
+        }
+
+        if(!u.getLastName().matches( "[A-Za-z ]*" ) || u.getLastName().matches("<script>(.*?)</script>") || u.getLastName().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+
+        if(u.getEmail().equals(null) || u.getEmail().equals("")) {
+            return false;
+        }
+
+        if(!u.getEmail().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
+            return false;
+        }
+
+        if(u.getPassword().equals(null) || u.getPassword().equals("")) {
+            return false;
+        }
+
+        if(u.getPassword().matches("<script>(.*?)</script>") || u.getPassword().matches("\"<script(.*?)>\"")) {
+            return false;
+        }
+        boolean isValidRole = false;
+        if(u.getRole().equals("Admin") || u.getRole().equals("SB")) {
+            isValidRole = true;
+        } else {
+            return false;
+        }
+
+        return true;
     }
 
 }

@@ -70,6 +70,10 @@ public class SellerController {
         User user;
         try {
             user=userExtractor.getUserFromtoken(requestTokenHeader);
+            boolean t = checkIfValidBookInput(book);
+            if(!t) {
+                return new ResponseEntity<>("Invalid Input! Please correct your inputs and re-submit", HttpStatus.BAD_REQUEST);
+            }
             bookservice.UpdateBook(book);
             return ResponseEntity.ok(book);
 
@@ -107,7 +111,7 @@ public class SellerController {
             return false;
         }
 
-        if(!book.getTitle().matches("[A-Za-z]*") || book.getTitle().matches("<script>(.*?)</script>") || book.getTitle().matches("\"<script(.*?)>\"")) {
+        if(!book.getTitle().matches("[A-Za-z ]*") || book.getTitle().matches("<script>(.*?)</script>") || book.getTitle().matches("\"<script(.*?)>\"")) {
             return false;
         }
 
@@ -115,7 +119,7 @@ public class SellerController {
             return false;
         }
 
-        if(!book.getAuthors().matches("[A-Za-z]*") || book.getAuthors().matches("<script>(.*?)</script>") || book.getAuthors().matches("\"<script(.*?)>\"")) {
+        if(!book.getAuthors().matches("[A-Za-z ]*") || book.getAuthors().matches("<script>(.*?)</script>") || book.getAuthors().matches("\"<script(.*?)>\"")) {
             return false;
         }
         if(book.getPublicationDate().equals(null) || book.getPublicationDate().equals("")) {
